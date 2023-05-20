@@ -11,6 +11,10 @@ from dataclasses import dataclass
 from datetime import datetime
 from typing import List, Optional
 
+from atsphinx.og_article.models import og_article
+from docutils import nodes
+from sphinx.application import Sphinx
+
 
 @dataclass
 class Entry:
@@ -37,3 +41,19 @@ class Feed:
         if not self.entries:
             return None
         return max([e.updated for e in self.entries])
+
+
+def generate_entry(app: Sphinx, docname: str) -> Entry:
+    """Parse and generate entry object from doctree node."""
+    document = app.env.get_doctree(docname)
+    if not document:
+        raise ValueError(f"Document '{docname}' is not found.")
+    article_nodes = list(document.findall(og_article))
+    if not article_nodes:
+        raise ValueError("This document have og_article node")
+    return Entry(
+        title=list(document.findall(nodes.title))[0].astext(),
+        link=f"{app.config.html_baseurl}/{app.builder.get_target_uri(docname)}",
+        updated=article_nodes[0]["modified_time"],
+        summary="Please see content by go to link",  # TODO: Implement after
+    )
