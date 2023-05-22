@@ -1,7 +1,18 @@
 """Simple RSS feed generator based Open Graph."""
 from sphinx.application import Sphinx
+from sphinx.config import Config
 
 __version__ = "0.0.0"
+
+
+def validate_config(app: Sphinx, config: Config):
+    """Check that other config are exists.
+
+    This extension requires some config values from core or other extension.
+    Func raise error if config values are exists.
+    """
+    if not config.html_baseurl:
+        raise ValueError(f"{__name__} require 'html_baseurl' in conf.py")
 
 
 def setup(app: Sphinx):  # noqa: D103
@@ -11,6 +22,7 @@ def setup(app: Sphinx):  # noqa: D103
         "html",
         [str],
     )
+    app.connect("config-inited", validate_config)
     return {
         "version": __version__,
         "env_version": 1,

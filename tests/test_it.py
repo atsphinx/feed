@@ -2,6 +2,7 @@
 from io import StringIO
 
 import pytest
+from sphinx.errors import ExtensionError
 from sphinx.testing.util import SphinxTestApp
 
 from atsphinx.feed import models
@@ -45,3 +46,12 @@ def test__generate_feed(app: SphinxTestApp, status: StringIO, warning: StringIO)
     assert feed.title == "EXAMPLE"
     assert feed.link == "http://example.com/"
     assert feed.author == "Tester"
+
+
+class TestFor_sphinx_config:  # noqa: D101
+    @pytest.mark.sphinx("html", testroot="no_html_baseurl")
+    def test_raise__no_html_baseurl(self, app_params, make_app):
+        """Raises error when create Sphinx app that do not have html_baseurl in conf."""
+        with pytest.raises(ExtensionError):
+            args, kwargs = app_params
+            make_app(*args, **kwargs)
