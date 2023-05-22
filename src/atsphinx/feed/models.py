@@ -42,6 +42,16 @@ class Feed:
             return None
         return max([e.updated for e in self.entries])
 
+    @classmethod
+    def init(cls, app: Sphinx):
+        """Create feed object frmo Sphinx application."""
+        return cls(
+            title=app.config.html_title,
+            link=f"{app.config.html_baseurl}/",
+            author=app.config.author,
+            entries=[],
+        )
+
 
 def generate_entry(app: Sphinx, docname: str) -> Entry:
     """Parse and generate entry object from doctree node."""
