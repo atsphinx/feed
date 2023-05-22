@@ -38,4 +38,20 @@ This generate RSS file into ``/feed.xml`` on your output directory.
 Configuration
 =============
 
-.. todo:: Write it
+.. confval:: feed_default_summary
+
+   :Type: ``str``
+   :Default: ``Please see content by go to link.``
+   :Example: ``Get content from link.``
+
+   This is shared value for summary of entries.
+
+   Extension inject:
+
+   .. code-block:: xml
+
+      <feed>
+        <entry>
+          <summary>THIS IS FROM feed_default_summary</summary>
+        </entry>
+      </feed>

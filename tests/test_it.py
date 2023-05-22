@@ -12,14 +12,30 @@ def test__it(app: SphinxTestApp, status: StringIO, warning: StringIO):
     """Test to pass."""
 
 
-@pytest.mark.sphinx("html")
-def test__generate_entry(app: SphinxTestApp, status: StringIO, warning: StringIO):
-    """Simple test for generating entry object."""
-    app.builder.read_doc("article")
-    entry = models.generate_entry(app, "article")
-    assert entry.title == "Article title"
-    assert entry.updated.strftime("%Y-%m-%d") == "2023-01-01"
-    assert entry.link == "http://example.com/article.html"
+class TestFor_generate_entry:  # noqa: D101
+    @pytest.mark.sphinx("html")
+    def test_default(self, app: SphinxTestApp, status: StringIO, warning: StringIO):
+        """Simple test for generating entry object."""
+        app.builder.read_doc("article")
+        entry = models.generate_entry(app, "article")
+        assert entry.title == "Article title"
+        assert entry.updated.strftime("%Y-%m-%d") == "2023-01-01"
+        assert entry.link == "http://example.com/article.html"
+        assert entry.summary == "Please see content by go to link."
+
+    @pytest.mark.sphinx(
+        "html",
+        confoverrides={
+            "feed_default_summary": "test description",
+        },
+    )
+    def test_configured_summary(
+        self, app: SphinxTestApp, status: StringIO, warning: StringIO
+    ):
+        """Simple test for generating entry object."""
+        app.builder.read_doc("article")
+        entry = models.generate_entry(app, "article")
+        assert entry.summary == "test description"
 
 
 @pytest.mark.sphinx("html")

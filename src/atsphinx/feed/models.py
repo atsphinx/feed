@@ -65,5 +65,6 @@ def generate_entry(app: Sphinx, docname: str) -> Entry:
         title=list(document.findall(nodes.title))[0].astext(),
         link=f"{app.config.html_baseurl}/{app.builder.get_target_uri(docname)}",
         updated=article_nodes[0]["modified_time"],
-        summary="Please see content by go to link",  # TODO: Implement after
+        # TODO: Auto-generate from content
+        summary=app.config.feed_default_summary,
     )
