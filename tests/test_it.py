@@ -39,13 +39,27 @@ class TestFor_generate_entry:  # noqa: D101
         assert entry.summary == "test description"
 
 
-@pytest.mark.sphinx("html")
-def test__generate_feed(app: SphinxTestApp, status: StringIO, warning: StringIO):
-    """Single test for generate feeed object."""
-    feed = models.Feed.init(app)
-    assert feed.title == "EXAMPLE"
-    assert feed.link == "http://example.com/"
-    assert feed.author == "Tester"
+class TestFor_generate_feed:  # noqa: D101
+    @pytest.mark.sphinx("html")
+    def test_default(self, app: SphinxTestApp, status: StringIO, warning: StringIO):
+        """Single test for generate feeed object."""
+        feed = models.Feed.init(app)
+        assert feed.title == "EXAMPLE"
+        assert feed.link == "http://example.com/"
+        assert feed.author == "Tester"
+
+    @pytest.mark.sphinx(
+        "html",
+        confoverrides={
+            "feed_title": "test title",
+        },
+    )
+    def test_configured_title(
+        self, app: SphinxTestApp, status: StringIO, warning: StringIO
+    ):
+        """Simple test for generating entry object."""
+        feed = models.Feed.init(app)
+        assert feed.title == "test title"
 
 
 class TestFor_sphinx_config:  # noqa: D101

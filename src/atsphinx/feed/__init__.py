@@ -17,6 +17,12 @@ def validate_config(app: Sphinx, config: Config):
 
 def setup(app: Sphinx):  # noqa: D103
     app.add_config_value(
+        "feed_title",
+        None,
+        "html",
+        [str],
+    )
+    app.add_config_value(
         "feed_default_summary",
         "Please see content by go to link.",
         "html",

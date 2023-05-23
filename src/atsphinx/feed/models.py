@@ -14,6 +14,17 @@ from typing import List, Optional
 from atsphinx.og_article.models import og_article
 from docutils import nodes
 from sphinx.application import Sphinx
+from sphinx.config import Config
+
+
+def resolve_feed_title(config: Config) -> str:
+    """Return feed title by config of Sphinx.
+
+    This picks title value suitablely from conf.py
+    """
+    if config.feed_title:
+        return config.feed_title
+    return config.html_title
 
 
 @dataclass
@@ -46,7 +57,7 @@ class Feed:
     def init(cls, app: Sphinx):
         """Create feed object frmo Sphinx application."""
         return cls(
-            title=app.config.html_title,
+            title=resolve_feed_title(app.config),
             link=f"{app.config.html_baseurl}/",
             author=app.config.author,
             entries=[],

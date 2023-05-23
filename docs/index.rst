@@ -38,6 +38,16 @@ This generate RSS file into ``/feed.xml`` on your output directory.
 Configuration
 =============
 
+.. confval:: feed_title
+
+   :Type: ``str``
+   :Default: ``None``
+   :Example: ``My feed``
+
+   Value attached ``/feed/title`` content.
+
+   If it is not set, feed title is from ``html_title``.
+
 .. confval:: feed_default_summary
 
    :Type: ``str``
