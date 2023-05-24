@@ -2,6 +2,8 @@
 from sphinx.application import Sphinx
 from sphinx.config import Config
 
+from . import processors
+
 __version__ = "0.0.0"
 
 
@@ -28,7 +30,14 @@ def setup(app: Sphinx):  # noqa: D103
         "html",
         [str],
     )
+    app.add_config_value(
+        "feed_out_path",
+        "atom.xml",
+        "html",
+        [str],
+    )
     app.connect("config-inited", validate_config)
+    app.connect("build-finished", processors.generate_feed)
     return {
         "version": __version__,
         "env_version": 1,

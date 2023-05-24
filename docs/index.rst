@@ -65,3 +65,11 @@ Configuration
           <summary>THIS IS FROM feed_default_summary</summary>
         </entry>
       </feed>
+
+.. confval:: feed_out_path
+
+   :Type: ``str``
+   :Default: ``atom.xml``
+   :Example: ``feed/index.xml``
+
+   Path of feed XML file.

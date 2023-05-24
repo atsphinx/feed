@@ -21,6 +21,7 @@ classifiers = [
 readme = "README.rst"
 dependencies = [
   "atsphinx-og-article>=0.2",
+  "feedgen",
   "sphinx",
 ]
 dynamic = ["version", "description"]

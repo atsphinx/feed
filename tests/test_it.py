@@ -1,5 +1,6 @@
 """Standard tests."""
 from io import StringIO
+from pathlib import Path
 
 import pytest
 from sphinx.errors import ExtensionError
@@ -69,3 +70,11 @@ class TestFor_sphinx_config:  # noqa: D101
         with pytest.raises(ExtensionError):
             args, kwargs = app_params
             make_app(*args, **kwargs)
+
+
+class TestFor_build_fed:  # noqa: D101
+    @pytest.mark.sphinx("html")
+    def test_default(self, app: SphinxTestApp):
+        """Raises error when create Sphinx app that do not have html_baseurl in conf."""
+        app.build()
+        assert (Path(app.outdir) / "atom.xml").exists()
