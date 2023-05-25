@@ -81,4 +81,8 @@ class TestFor_build_fed:  # noqa: D101
         feed_path = Path(app.outdir) / "atom.xml"
         assert feed_path.exists()
         soup = BeautifulSoup(feed_path.read_text(), "xml")
+        assert soup.feed.id.text == "http://example.com/"
+        assert soup.feed.title.text == "EXAMPLE"
         assert len(soup.find_all("entry")) == 1
+        entry = soup.find("entry")
+        assert entry.title.text == "Article title"
