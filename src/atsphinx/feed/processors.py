@@ -19,6 +19,7 @@ def generate_feed(app: Sphinx, exc: Exception):
     fg = FeedGenerator()
     fg.id(feed.link)
     fg.title(feed.title)
+    fg.link(href=feed.link, rel="alternate")
     for entry in feed.entries:
         print(entry.link)
         fg_entry = fg.add_entry()
