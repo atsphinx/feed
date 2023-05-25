@@ -31,6 +31,8 @@ doc = [
   "rst-pypi-ref",
 ]
 test = [
+  "beautifulsoup4==4.*",
+  "lxml==4.*",
   "pytest ==7.*",
 ]
 

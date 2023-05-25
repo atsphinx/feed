@@ -3,6 +3,7 @@ from io import StringIO
 from pathlib import Path
 
 import pytest
+from bs4 import BeautifulSoup
 from sphinx.errors import ExtensionError
 from sphinx.testing.util import SphinxTestApp
 
@@ -77,4 +78,7 @@ class TestFor_build_fed:  # noqa: D101
     def test_default(self, app: SphinxTestApp):
         """Raises error when create Sphinx app that do not have html_baseurl in conf."""
         app.build()
-        assert (Path(app.outdir) / "atom.xml").exists()
+        feed_path = Path(app.outdir) / "atom.xml"
+        assert feed_path.exists()
+        soup = BeautifulSoup(feed_path.read_text(), "xml")
+        assert len(soup.find_all("entry")) == 1
