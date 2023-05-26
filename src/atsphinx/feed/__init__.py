@@ -37,6 +37,7 @@ def setup(app: Sphinx):  # noqa: D103
         [str],
     )
     app.connect("config-inited", validate_config)
+    app.connect("html-page-context", processors.append_link_for_feed)
     app.connect("build-finished", processors.generate_feed)
     return {
         "version": __version__,

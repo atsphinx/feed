@@ -86,3 +86,11 @@ class TestFor_build_fed:  # noqa: D101
         assert len(soup.find_all("entry")) == 1
         entry = soup.find("entry")
         assert entry.title.text == "Article title"
+
+    @pytest.mark.sphinx("html")
+    def test_html(self, app: SphinxTestApp):
+        """Raises error when create Sphinx app that do not have html_baseurl in conf."""
+        app.build()
+        html_path = Path(app.outdir) / "index.html"
+        soup = BeautifulSoup(html_path.read_text(), "lxml")
+        assert soup.find_all("link", {"type": "application/atom+xml"})
