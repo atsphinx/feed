@@ -32,10 +32,12 @@ Configure your ``conf.py``.
 
 When you build by html-like builder, this generates Atom style feed file into outdir.
 
-  _build/html/
-    index.html
-    _static/
-    atom.xml <- Generated!!
+.. code:: plain
+
+  - _build/html/
+    + index.html
+    + atom.xml <- Generated!!
+    - _static/
 
 You can configure behevior of extension.
 Please see docs.

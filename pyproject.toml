@@ -7,7 +7,7 @@ name = "atsphinx-feed"
 authors = [{name = "Kazuya Takei", email = "myself@attakei.net"}]
 license = {file = "LICENSE"}
 classifiers = [
-  "Development Status :: 3 - Alpha",
+  "Development Status :: 4 - Beta",
   "Framework :: Sphinx",
   "Framework :: Sphinx :: Extension",
   "Intended Audience :: Developers",
