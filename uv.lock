@@ -33,9 +33,9 @@ test = [
 [package.metadata]
 requires-dist = [
     { name = "atsphinx-og-article", specifier = ">=0.2" },
-    { name = "beautifulsoup4", marker = "extra == 'test'", specifier = "==4.*" },
+    { name = "beautifulsoup4", marker = "extra == 'test'" },
     { name = "feedgen" },
-    { name = "lxml", marker = "extra == 'test'", specifier = "==4.*" },
+    { name = "lxml", marker = "extra == 'test'" },
     { name = "pytest", marker = "extra == 'test'", specifier = "==7.*" },
     { name = "rst-pypi-ref", marker = "extra == 'doc'" },
     { name = "sphinx" },
