@@ -35,11 +35,11 @@ jobs:
           echo ${{ matrix.python-version }} > .python-version
       - name: 'Configure env as locked deps by uv.lock'
         run: |
-          uv sync --frozen --python='${{ steps.setup-python.outputs.python-path }}'
+          uv sync --frozen --all-extras --python='${{ steps.setup-python.outputs.python-path }}'
         if: ${{ matrix.workspace == 'locked'}}
       - name: 'Configure env as latest deps on PyPI'
         run: |
-          uv sync -U --python='${{ steps.setup-python.outputs.python-path }}'
+          uv sync -U --all-extras --python='${{ steps.setup-python.outputs.python-path }}'
         if: ${{ matrix.workspace == 'latest'}}
       - name: 'Run tests'
         run: |
