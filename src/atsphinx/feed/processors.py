@@ -53,4 +53,4 @@ def append_link_for_feed(
     )
     if "metatags" not in context:
         context["metatags"] = ""
-    context["metatags"] += f"\n{ET.tostring(elm)}"
+    context["metatags"] += f"\n{ET.tostring(elm).decode()}"
