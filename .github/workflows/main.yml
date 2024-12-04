@@ -28,6 +28,10 @@ jobs:
           - '3.12'
           - '3.13'
         workspace: ['locked', 'latest']
+        exclude:
+          # It is failure to build lxml 4.x
+          - python-version: '3.13'
+            workspace: 'locked'
     steps:
       - uses: actions/checkout@v4
       - uses: jdx/mise-action@v2
