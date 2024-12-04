@@ -2,6 +2,21 @@
 Change logs
 ===========
 
+v0.1.1
+======
+
+:date: 2024-12-04 JST
+
+Fixes
+-----
+
+* Render link element as string in output html.
+
+Others
+------
+
+* Use mise and uv for workspace management.
+
 v0.1.0
 ======
 
