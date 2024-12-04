@@ -32,7 +32,7 @@ Configure your ``conf.py``.
 
 When you build by html-like builder, this generates Atom style feed file into outdir.
 
-.. code:: plain
+.. code:: text
 
   - _build/html/
     + index.html
