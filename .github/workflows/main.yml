@@ -54,4 +54,4 @@ jobs:
           uv sync --frozen --all-extras
       - name: Run check
         run: |
-          uv make -C docs linkcheck
+          uv run make -C docs linkcheck
