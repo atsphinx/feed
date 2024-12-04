@@ -4,7 +4,7 @@ from sphinx.config import Config
 
 from . import processors
 
-__version__ = "0.1.1"
+__version__ = "0.1.2"
 
 
 def validate_config(app: Sphinx, config: Config):
