@@ -1,4 +1,5 @@
 """Integration tests."""
+
 from pathlib import Path
 
 import pytest
@@ -13,7 +14,7 @@ def outdir(app: SphinxTestApp):
     return Path(app.outdir).resolve()
 
 
-class TestForBuildReults:
+class TestForBuildResults:
     """Test cases for generated content by build with default settings."""
 
     def test__generated_xml(self, outdir: Path):  # noqa: D102
